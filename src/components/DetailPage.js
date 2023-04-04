@@ -10,13 +10,13 @@ export default function DetailPage(){
     useEffect(()=>{
 
         let postData = JSON.parse(localStorage.getItem("data"));
-        setCurr(postData[id]);
+        setCurr(postData[id-1]);
         let url = `https://picsum.photos/200?random=${id}`
         setImage(url);
 
     }, [id]);
 
-    if(id < 1 || id >= 100){
+    if(id < 1 || id > 100){
         return (
             <Error />
         )
