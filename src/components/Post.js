@@ -17,7 +17,7 @@ export default function Post({id,userId, title, body, click}){
     }
 
     return (
-        <div id={id} className="card m-1" style={{width: "16rem"}} onClick={() => nav(id)} >
+        <div id={id} className="card m-1 mt-2 mb-1" style={{width: "16rem"}} onClick={() => nav(id)} >
             <img id={id} class="card-img-top" src={imgUrl} alt="Loading..." />
             <div id={id} class="card-body">
                 <h5 id={id}>User ID : {userId}</h5>

@@ -21,19 +21,14 @@ export default function HomePage({data, click}){
 
 
     return (
-        <>
-            <div className="mt-3">
-                <h2>Social Media App</h2>
-                <hr></hr>
-            </div>
-            <div className="container-fluid d-flex flex-wrap justify-content-evenly">
+            <div className="container-fluid d-flex flex-wrap justify-content-evenly mb-3">
                 {
                     data.map((post) =>{
                         return <Post id={post.id} userId={post.userId} title={sortTitle(post.title)} body={sortBody(post.body)} click={click} />
                     })
                 }
             </div>
-        </>
+        
         
     )
 }

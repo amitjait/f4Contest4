@@ -3,6 +3,7 @@ import HomePage from "./components/HomePage";
 import DetailPage from "./components/DetailPage";
 import {useEffect,useState } from "react";
 import Error from "./components/Error";
+import "./style.css"
 
 
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
@@ -45,10 +46,15 @@ export default function App(){
         <div className="container">
             
             <Router>
+                <div className="mt-3">
+                    <h2>Social Media App</h2>
+                    <hr></hr>
+                </div>
                 <Routes>
+
                     <Route exact path="/" element={<HomePage data={data} click={click}/>} />
                         <Route exact path="/:id" element={<DetailPage />}/>
-                    <Route path="/erro" element={<Error />} />
+                    <Route path="*" element={<Error />} />
                 </Routes>
             </Router>
         </div>
