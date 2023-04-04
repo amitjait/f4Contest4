@@ -1,16 +1,14 @@
 import React from "react";
 import HomePage from "./components/HomePage";
-import { useNavigate } from "react-router-dom";
 import DetailPage from "./components/DetailPage";
 import {useEffect,useState } from "react";
 import Error from "./components/Error";
 
 
-import { BrowserRouter as Router, Routes, Route, Link, useParams} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 export default function App(){
-    const [id, setId] = useState(0);
-    const [detail, setDetail] = useState({});
+
     const [data, setData] = useState([]);
     // const navigate = useNavigate();
 
@@ -38,7 +36,6 @@ export default function App(){
 
   function click(id){
     console.log(id)
-    setId(id);
   }
 
 
