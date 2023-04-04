@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "./components/HomePage";
-
+import { useNavigate } from "react-router-dom";
 import DetailPage from "./components/DetailPage";
 import {useEffect,useState } from "react";
 import Error from "./components/Error";
@@ -12,6 +12,7 @@ export default function App(){
     const [id, setId] = useState(0);
     const [detail, setDetail] = useState({});
     const [data, setData] = useState([]);
+    // const navigate = useNavigate();
 
   function fetchData(){
     
@@ -35,9 +36,9 @@ export default function App(){
 
   useEffect(fetchData, []);
 
-  function click(event){
-    console.log(event.target.id)
-    setId(event.target.id);
+  function click(id){
+    console.log(id)
+    setId(id);
   }
 
 
@@ -49,8 +50,8 @@ export default function App(){
             <Router>
                 <Routes>
                     <Route exact path="/" element={<HomePage data={data} click={click}/>} />
-                        <Route exact path="/:id1" element={<DetailPage id={id} data={detail}/>}/>
-                    <Route path="*" element={<Error />} />
+                        <Route exact path="/:id" element={<DetailPage />}/>
+                    <Route path="/erro" element={<Error />} />
                 </Routes>
             </Router>
         </div>
