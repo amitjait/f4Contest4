@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import HomePage from "./components/HomePage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import DetailPage from "./components/DetailPage";
+import {useEffect,useState } from "react";
+import Error from "./components/Error";
+
+
+import { BrowserRouter as Router, Routes, Route, Link, useParams} from "react-router-dom";
+
+export default function App(){
+    const [id, setId] = useState(0);
+    const [detail, setDetail] = useState({});
+    const [data, setData] = useState([]);
+
+  function fetchData(){
+    
+    let url = `https://jsonplaceholder.typicode.com/posts`;
+
+    console.log(url);
+    fetch(url)
+    .then((response) =>{
+      return response.json();
+    }).then((actualData) =>{
+    //   console.log(typeof actualData, actualData[0]);
+      setData(actualData);
+      localStorage.setItem("data", JSON.stringify(actualData));
+    }).catch((e) =>{
+      alert("Error", e);
+      return;
+    })
+  }
+
+  
+
+  useEffect(fetchData, []);
+
+  function click(event){
+    console.log(event.target.id)
+    setId(event.target.id);
+  }
+
+
+//   let path = ;
+  
+    return (
+        <div className="container">
+            
+            <Router>
+                <Routes>
+                    <Route exact path="/" element={<HomePage data={data} click={click}/>} />
+                        <Route exact path="/:id1" element={<DetailPage id={id} data={detail}/>}/>
+                    <Route path="*" element={<Error />} />
+                </Routes>
+            </Router>
+        </div>
+    )
 }
-
-export default App;
